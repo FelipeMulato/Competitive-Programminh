@@ -1,0 +1,12 @@
+[cite_start]// Floyd-Warshall [cite: 1359, 1365, 1381]
+ll d[MAXN][MAXN]; // Inicializar com LINF, e d[i][i] = 0
+void floyd_warshall(int n) {
+    for (int k = 1; k <= n; k++) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (d[i][k] < LINF && d[k][j] < LINF) // Evita overflow
+                    d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+            }
+        }
+    }
+}
